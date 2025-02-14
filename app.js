@@ -12,6 +12,8 @@ const userRouter = require("./routes/users");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// mount point 
 app.use("/api/users", userRouter);
 
 // Handle all undefined routes

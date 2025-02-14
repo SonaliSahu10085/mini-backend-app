@@ -50,10 +50,10 @@ module.exports.loginUser = async (req, res) => {
   const { error } = loginValidation.validate(req.body);
   if (error) return res.status(400).json({ error: error.details[0].message });
 
-  const { email, password } = req.body;
+  const { email, password} = req.body;
 
   try {
-    const user = await User.findOne({ $or: [{ username }, { email }] });
+    const user = await User.findOne({  email });
     if (!user) return res.status(404).json({ message: "User not found" });
 
     const isMatch = await bcrypt.compare(password, user.password);
@@ -76,6 +76,7 @@ module.exports.loginUser = async (req, res) => {
     });
   } catch (e) {
     res.status(500).json({ message: "Internal Server Error" });
+    console.log(e);
   }
 };
 

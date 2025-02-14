@@ -11,10 +11,9 @@ module.exports.registerValidation = Joi.object({
 });
 
 module.exports.loginValidation = Joi.object({
-  username: Joi.string().optional(),
-  email: Joi.string().email().optional(),
+  email: Joi.string().email().required(),
   password: Joi.string().required(),
-}).or("username", "email");
+});
 
 module.exports.searchUserValidation = Joi.object({
   username: Joi.string().optional(),
