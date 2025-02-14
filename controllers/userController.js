@@ -98,7 +98,7 @@ module.exports.searchUser = async (req, res) => {
     const loggedInUser = await User.findOne({ _id: req.user.id });
     console.log(loggedInUser);
 
-    // Searcing user
+    // Searcing user - excluding the password field
     const user = await User.findOne({ $or: [{ username }, { email }] }).select(
       "-password"
     );
